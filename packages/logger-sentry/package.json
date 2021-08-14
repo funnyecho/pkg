@@ -1,0 +1,17 @@
+{
+  "name": "@funnyecho/logger-sentry",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "author": "funnyecho <samhwang1990@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@funnyecho/context": "workspace:*",
+    "@funnyecho/logger": "workspace:*"
+  },
+  "peerDependencies": {
+    "@sentry/browser": "*"
+  },
+  "devDependencies": {
+    "@sentry/browser": "^6.11.0"
+  }
+}

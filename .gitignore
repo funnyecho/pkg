@@ -1,0 +1,17 @@
+.idea
+.DS_Store
+.vscode
+node_modules
+coverage
+dist
+api_report_local
+
+package-lock.json
+
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

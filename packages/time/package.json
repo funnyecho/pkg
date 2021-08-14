@@ -1,0 +1,7 @@
+{
+  "name": "@funnyecho/time",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "funnyecho <samhwang1990@gmail.com>",
+  "license": "MIT"
+}
