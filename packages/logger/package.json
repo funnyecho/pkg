@@ -1,7 +1,16 @@
 {
   "name": "@funnyecho/logger",
-  "version": "0.0.1",
-  "main": "dist/index.js",
+  "version": "1.0.0",
+  "main": "dist/index",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "typesVersions": {
+    "*": {
+      "*": [ "dist/*", "dist/index.d.ts" ]
+    }
+  },
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {

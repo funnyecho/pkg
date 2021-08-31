@@ -5,7 +5,7 @@ import Level from './level';
 import Field, { IFieldList } from './field';
 import { IEntry } from './entry';
 import Transport from './transport';
-import Context from '@funnyecho/context/src';
+import Context from '@funnyecho/context';
 
 export type ILogExtra = { [key: string]: any };
 export type ILogTupleExtra = IKvt;

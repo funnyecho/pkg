@@ -1,7 +1,11 @@
 {
   "name": "@funnyecho/logger-sentry",
-  "version": "0.0.1",
-  "main": "dist/index.js",
+  "version": "1.0.0",
+  "main": "dist/index",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {

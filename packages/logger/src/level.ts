@@ -1,6 +1,6 @@
 export type ILevel = LevelEnum;
 
-enum LevelEnum {
+export enum LevelEnum {
   fatal,
   error,
   info,
