@@ -23,6 +23,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "node scripts/build/index.js"
+    "build": "node scripts/build/index.js",
+    "release": "node scripts/release/index.js"
   }
 }

@@ -1,8 +1,8 @@
 const compiler = require('./compiler');
 
 function run() {
-  compiler.compile({
-    packages: ['time', 'promise', 'context', 'logger', 'logger-sentry'],
+  return compiler.compile({
+    packages: compiler.getPackageList(),
     // packages: ['time', 'promise', 'context'],
     // packages: ['logger-sentry'],
   })

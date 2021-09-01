@@ -1,7 +1,16 @@
 const execa = require('execa');
 const chalk = require('chalk');
-const exitCode = require('./exitcode');
+const exitCode = require('../exitcode');
+const fs = require('fs');
 const path = require('path');
+
+function getPackageList() {
+  const { readdirSync } = fs;
+
+  return readdirSync(resolve('packages'), { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name)
+}
 
 function compile({ packages } = {}) {
   if (!packages || packages.length <= 0) {
@@ -39,8 +48,14 @@ function compile({ packages } = {}) {
   return exitCode.success;
 }
 
+function compileAllPackage() {
+  return compile({ packages: getPackageList() });
+}
+
 module.exports = {
+  getPackageList,
   compile,
+  compileAllPackage,
 }
 
 function resolve(...segments) {
