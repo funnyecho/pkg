@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser';
 import type { ITransport } from '@funnyecho/logger';
+
+import * as Sentry from '@sentry/browser';
 import valuer from './valuer';
-import loggerLevel from '@funnyecho/logger/level';
-import loggerField from '@funnyecho/logger/field';
+import logger from '@funnyecho/logger';
 
 function withSentryConfig(): ITransport {
   return (ctx, entry) => {
@@ -18,32 +18,32 @@ function withSentryPort(): ITransport {
     const message = `[${owner}]${entry.message}`;
 
     switch (level) {
-      case loggerLevel.LevelEnum.error:
-      case loggerLevel.LevelEnum.fatal:
+      case logger.LevelEnum.error:
+      case logger.LevelEnum.fatal:
         Sentry.captureException(message, {
           tags: {
             'event.owner': owner,
           },
-          extra: flat(loggerField.mapFieldList(fields), config.exceptionExtraFlatDepth),
+          extra: flat(logger.mapFieldList(fields), config.exceptionExtraFlatDepth),
         });
         break;
-      case loggerLevel.LevelEnum.info:
+      case logger.LevelEnum.info:
         Sentry.captureMessage(message, {
           level: Sentry.Severity.Info,
           tags: {
             'event.owner': owner,
           },
-          extra: flat(loggerField.mapFieldList(fields), config.messageExtraFlatDepth),
+          extra: flat(logger.mapFieldList(fields), config.messageExtraFlatDepth),
         });
         break;
-      case loggerLevel.LevelEnum.debug:
+      case logger.LevelEnum.debug:
       default:
         Sentry.addBreadcrumb({
           type: 'Debug',
           level: Sentry.Severity.Log,
           category: owner,
           message,
-          data: flat(loggerField.mapFieldList(fields), config.breadcrumbDataFlatDepth),
+          data: flat(logger.mapFieldList(fields), config.breadcrumbDataFlatDepth),
         });
         break;
     }

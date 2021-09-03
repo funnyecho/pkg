@@ -1,33 +1,10 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "moduleResolution": "node",
-    "sourceMap": true,
+    "removeComments": false,
     "declaration": true,
-    "declarationMap": true,
-    "noEmitOnError": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-//    "types": [],
-    "lib": [
-      "dom",
-      "es5",
-      "scripthost",
-      "es2015"
-    ],
-//    "baseUrl": ".",
-//    "paths": {
-//      "@funnyecho/time*": ["packages/time/src/*"],
-//      "@funnyecho/promise*": ["packages/promise/src/*"],
-//      "@funnyecho/context*": ["packages/context/src/*"],
-//      "@funnyecho/logger-sentry*": ["packages/logger-sentry/src/*"],
-//      "@funnyecho/logger*": ["packages/logger/src/*"],
-//      "@funnyecho/*": ["packages/*/src"]
-//    }
-  },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+    "declarationMap": true
+  }
 }

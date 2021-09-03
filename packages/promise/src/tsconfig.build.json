@@ -1,0 +1,21 @@
+{
+  "extends": "../../../tsconfig.build.json",
+
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "../dist",
+    "declarationDir": "../dist/types",
+  },
+
+  "include": [
+    "./*"
+  ],
+
+  "exclude": [
+    "./*_test.ts"
+  ],
+
+  "references": [
+    { "path": "../../time/src/tsconfig.build.json" }
+  ]
+}

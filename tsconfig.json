@@ -1,16 +1,40 @@
 {
-  "extends": "./tsconfig.build.json",
-
   "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@funnyecho/time*": ["packages/time/src/*"],
-      "@funnyecho/promise*": ["packages/promise/src/*"],
-      "@funnyecho/context*": ["packages/context/src/*"],
-      "@funnyecho/logger*": ["packages/logger/src/*"],
-      "@funnyecho/logger-sentry*": ["packages/logger-sentry/src/*"],
-      "@funnyecho/*": ["packages/*/src"]
-    },
-    "noEmit": true
-  }
+      "@funnyecho/time": [
+        "./packages/time/src"
+      ],
+      "@funnyecho/promise": [
+        "./packages/promise/src"
+      ],
+      "@funnyecho/context": [
+        "./packages/context/src"
+      ],
+      "@funnyecho/logger-sentry": [
+        "./packages/logger-sentry/src"
+      ],
+      "@funnyecho/logger": [
+        "./packages/logger/src"
+      ],
+      "@funnyecho/*": [
+        "./packages/*/src"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

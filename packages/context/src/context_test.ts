@@ -1,4 +1,4 @@
-import context from './index';
+import context from './context';
 import valuer from './valuer';
 import time from '@funnyecho/time';
 import constant from './constant';
@@ -102,7 +102,7 @@ describe('withCancel', function () {
       ctx
         .done()
         .then(() => {
-          expect(ctx.err()?.message).toBe(context.errCanceled);
+          expect(ctx.err()?.message).toBe(constant.errCanceled);
         })
         .finally(() => {
           cb(undefined);
@@ -120,7 +120,7 @@ describe('withDeadline', function () {
     return new Promise((cb) => {
       const [ctx, cancel] = context.withDeadline(context.background(), time.later(timeout));
       ctx.done().then(() => {
-        expect(ctx.err()?.message).toBe(context.errCanceled);
+        expect(ctx.err()?.message).toBe(constant.errCanceled);
         cb(undefined);
       });
 

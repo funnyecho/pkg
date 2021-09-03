@@ -1,15 +1,22 @@
 {
   "name": "@funnyecho/context",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "dist/index",
-  "types": "dist/index",
+  "types": "index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/types/*"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@funnyecho/promise": "workspace:*",
-    "@funnyecho/time": "workspace:*"
+    "@funnyecho/promise": "workspace:^",
+    "@funnyecho/time": "workspace:^"
   }
 }

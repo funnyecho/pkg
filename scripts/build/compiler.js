@@ -30,18 +30,10 @@ function compile({ packages } = {}) {
     }
 
     console.log('compiling:', pkg);
-    const res = execa.sync('tsc', [
-      '-b', 'tsconfig.build.json',
-      // '--traceResolution',
-    ], {
-      preferLocal: true,
-      detached: true,
-      cwd: resolve('packages', pkg),
-    });
-
-    if (res.exitCode !== exitCode.success) {
-      console.log(chalk.red('failed to compile package', pkg, ' with exit code', res.exitCode));
-      return res.exitCode;
+    const compileRes = compileSource(pkg);
+    if (compileRes.exitCode !== exitCode.success) {
+      console.log(chalk.red('failed to compile package', pkg, ' with exit code', compileRes.exitCode));
+      return compileRes.exitCode;
     }
   }
 
@@ -77,4 +69,18 @@ function cleanPkg(pkg) {
   }
 
   return exitCode.success;
+}
+
+function compileSource(pkg) {
+  const res = execa.sync('tsc', [
+    '-b', 'tsconfig.build.json',
+    // '--force',
+    // '--traceResolution',
+  ], {
+    preferLocal: true,
+    detached: true,
+    cwd: resolve('packages', pkg, 'src'),
+  });
+
+  return res;
 }

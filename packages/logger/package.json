@@ -1,19 +1,22 @@
 {
   "name": "@funnyecho/logger",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "dist/index",
-  "types": "dist/index",
+  "types": "index.d.ts",
   "files": [
-    "dist"
+    "dist/**/!(*.tsbuildinfo)"
   ],
-  "typesVersions": {
-    "*": {
-      "*": [ "dist/*", "dist/index.d.ts" ]
+  "exports": {
+    ".": {
+      "default": "./dist/index.js"
+    },
+    "./transports": {
+      "default": "./dist/transports/index.js"
     }
   },
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@funnyecho/context": "workspace:*"
+    "@funnyecho/context": "workspace:^"
   }
 }

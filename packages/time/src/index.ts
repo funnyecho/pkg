@@ -1,6 +1,11 @@
 // A Time represents an instant in time with millisecond precision.
 export type IDuration = number;
-export type ITime = Time;
+export declare class ITime {
+  timestamp: number;
+  add(d: IDuration): ITime;
+  sub(d: IDuration): ITime;
+  duration(t: ITime): IDuration;
+}
 
 const Millisecond: IDuration = 1;
 const Second: IDuration = Millisecond * 1000;
@@ -9,7 +14,7 @@ const Hour: IDuration = Minute * 60;
 const Day: IDuration = Hour * 24;
 const Week: IDuration = Day * 7;
 
-class Time {
+class Time implements ITime {
   readonly v: number;
 
   constructor(v: number) {
@@ -20,11 +25,11 @@ class Time {
     return this.v;
   }
 
-  add(d: IDuration): Time {
+  add(d: IDuration): ITime {
     return new Time(this.v + d);
   }
 
-  sub(d: IDuration): Time {
+  sub(d: IDuration): ITime {
     return new Time(this.v - d);
   }
 
