@@ -1,6 +1,6 @@
 {
   "name": "@funnyecho/promise",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index",
   "types": "index.d.ts",
   "files": [
@@ -9,6 +9,6 @@
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@funnyecho/time": "1.0.3"
+    "@funnyecho/time": "1.0.4"
   }
 }
