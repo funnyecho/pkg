@@ -9,6 +9,6 @@
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@funnyecho/time": "workspace:^"
+    "@funnyecho/time": "1.0.3"
   }
 }

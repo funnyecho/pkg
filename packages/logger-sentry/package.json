@@ -9,8 +9,8 @@
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@funnyecho/context": "workspace:^",
-    "@funnyecho/logger": "workspace:^"
+    "@funnyecho/context": "1.0.3",
+    "@funnyecho/logger": "1.0.3"
   },
   "peerDependencies": {
     "@sentry/browser": "*"
