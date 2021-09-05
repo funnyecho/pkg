@@ -1,0 +1,6 @@
+{
+  "name": "@funnyecho/logger/transports",
+  "types": "../dist/types/transports/index.d.ts",
+  "main": "../dist/logger/index.js",
+  "sideEffects": false
+}

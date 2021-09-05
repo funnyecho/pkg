@@ -3,15 +3,13 @@
   "version": "1.0.4",
   "main": "dist/index",
   "types": "index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "dist/types/*"
-      ]
-    }
-  },
   "files": [
-    "dist/**/!(*.tsbuildinfo)"
+    "dist/**/!(*.tsbuildinfo)",
+    "dist/types/**/!(*.tsbuildinfo)",
+    "src",
+    "LICENSE",
+    "package.json",
+    "README.md"
   ],
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT"
