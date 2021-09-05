@@ -1,0 +1,6 @@
+undecided:
+  - pkg.funnyecho
+  - "@funnyecho/context"
+  - "@funnyecho/logger"
+  - "@funnyecho/logger-sentry"
+  - "@funnyecho/promise"

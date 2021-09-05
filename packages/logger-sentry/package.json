@@ -1,6 +1,6 @@
 {
   "name": "@funnyecho/logger-sentry",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "dist/index",
   "types": "index.d.ts",
   "files": [
@@ -14,8 +14,8 @@
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@funnyecho/context": "1.0.5",
-    "@funnyecho/logger": "1.0.5"
+    "@funnyecho/context": "1.0.6",
+    "@funnyecho/logger": "1.0.6"
   },
   "peerDependencies": {
     "@sentry/browser": "*"
