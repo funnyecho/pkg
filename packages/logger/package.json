@@ -2,7 +2,7 @@
   "name": "@funnyecho/logger",
   "version": "1.0.6",
   "main": "dist/index",
-  "types": "index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "!dist/**/(*.tsbuildinfo)",
     "dist/**/*",
