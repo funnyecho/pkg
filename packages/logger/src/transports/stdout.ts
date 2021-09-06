@@ -5,18 +5,18 @@ import Field from '../field';
 function withStdout(): ITransport {
   return (_, entry) => {
     const { owner, level, message, fields } = entry;
-    const output = [`[${owner}]${message}`, Field.mapFieldList(fields)];
+    const output = [`[${owner}]${message}\n`, Field.mapFieldList(fields)];
     switch (level) {
       case loggerLevel.LevelEnum.error:
       case loggerLevel.LevelEnum.fatal:
-        console.error(output);
+        console.error(...output);
         break;
       case loggerLevel.LevelEnum.info:
-        console.info(output);
+        console.info(...output);
         break;
       default:
       case loggerLevel.LevelEnum.debug:
-        console.debug(output);
+        console.debug(...output);
         break;
     }
   };
