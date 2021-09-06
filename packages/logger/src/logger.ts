@@ -41,7 +41,7 @@ function newLogger(config: ILoggerConfig): ILogger {
   const { owner, transportList } = config;
 
   function marshalLogExtra(extra: any[]): IFieldList {
-    return Field.marshalFieldList(extra);
+    return Field.marshalFieldList(...extra);
   }
 
   function log(entry: IEntry) {
