@@ -45,7 +45,11 @@ function newLogger(config: ILoggerConfig): ILogger {
   }
 
   function log(entry: IEntry) {
-    Transport.traverseTransportList(Context.background(), entry, transportList);
+    try {
+      Transport.traverseTransportList(Context.background(), entry, transportList);
+    } catch (e) {
+      console.error('failed to log entry', 'entry', entry, 'error', e);
+    }
   }
 
   function debug(msg: string, extra: ILogExtra);
