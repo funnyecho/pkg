@@ -425,14 +425,14 @@ __metadata:
   resolution: "@funnyecho/logger-sentry@workspace:packages/logger-sentry"
   dependencies:
     "@funnyecho/context": 1.0.7
-    "@funnyecho/logger": 1.0.7
+    "@funnyecho/logger": 1.0.8
     "@sentry/browser": ^6.11.0
   peerDependencies:
     "@sentry/browser": "*"
   languageName: unknown
   linkType: soft
 
-"@funnyecho/logger@1.0.7, @funnyecho/logger@workspace:packages/logger":
+"@funnyecho/logger@1.0.8, @funnyecho/logger@workspace:packages/logger":
   version: 0.0.0-use.local
   resolution: "@funnyecho/logger@workspace:packages/logger"
   dependencies:
