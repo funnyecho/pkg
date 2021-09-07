@@ -32,9 +32,22 @@ function newNopLogger(): ILogger {
   return newLogger(LoggerConfig.newNopLoggerConfig());
 }
 
+let _globalLogger: ILogger = newNopLogger();
+
+function takeGlobalLogger(): ILogger {
+  return _globalLogger;
+}
+
+function withGlobalLogger(_logger: ILogger) {
+  _globalLogger = _logger;
+}
+
 export default {
   withLogger,
   newNopLogger,
+
+  takeGlobalLogger,
+  withGlobalLogger,
 };
 
 function newLogger(config: ILoggerConfig): ILogger {
