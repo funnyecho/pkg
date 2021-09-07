@@ -13,6 +13,8 @@ export type ITransport =
 
 export type ITransportList = ITransport[];
 
+export type ITerminalTransport = undefined | null;
+
 function traverseTransportWalkerList(ctx: IContext, entry: IEntry, list: ITransportWalkerFnList): void | [IContext, IEntry] | false {
   if (!ctx || !Array.isArray(list) || !entry) return;
 
