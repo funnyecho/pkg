@@ -7,27 +7,21 @@ function withStdout(): ITransport {
     const { owner, level, message, fields } = entry;
     const label = `${message} [${owner}]`
     const fieldMap = Field.mapFieldList(fields);
+    const output = `${label} ${JSON.stringify(fieldMap, null, 2)}`;
 
-    console.group(label);
-
-    Object.keys(fieldMap).forEach((key) => {
-      const value = fieldMap[key];
-      switch (level) {
-        case loggerLevel.LevelEnum.error:
-        case loggerLevel.LevelEnum.fatal:
-          console.error(key, value);
-          break;
-        case loggerLevel.LevelEnum.info:
-          console.info(key, value);
-          break;
-        default:
-        case loggerLevel.LevelEnum.debug:
-          console.debug(key, value);
-          break;
-      }
-    });
-
-    console.groupEnd();
+    switch (level) {
+      case loggerLevel.LevelEnum.error:
+      case loggerLevel.LevelEnum.fatal:
+        console.error(output);
+        break;
+      case loggerLevel.LevelEnum.info:
+        console.info(output);
+        break;
+      default:
+      case loggerLevel.LevelEnum.debug:
+        console.debug(output);
+        break;
+    }
   };
 }
 

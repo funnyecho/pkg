@@ -12,11 +12,13 @@ function getPackageList() {
     .map(dirent => dirent.name)
 }
 
-function compile({ packages } = {}) {
+function compile({ packages, watchMode } = {}) {
   if (!packages || packages.length <= 0) {
     console.log(chalk.red('invalid bundle packages:', packages));
     return exitCode.fa_invalid_package;
   }
+
+  const watchQueue = [];
 
   for (let i = 0; i < packages.length; ++i) {
     const pkg = packages[i];
@@ -30,11 +32,19 @@ function compile({ packages } = {}) {
     }
 
     console.log('compiling:', pkg);
-    const compileRes = compileSource(pkg);
-    if (compileRes.exitCode !== exitCode.success) {
-      console.log(chalk.red('failed to compile package', pkg, ' with exit code', compileRes.exitCode));
-      return compileRes.exitCode;
+    const compileRes = watchMode ? compileAndWatchSource(pkg) : compileSource(pkg);
+    if (watchMode) {
+      watchQueue.push(compileRes);
+    } else {
+      if (compileRes.exitCode !== exitCode.success) {
+        console.log(chalk.red('failed to compile package', pkg, ' with exit code', compileRes.exitCode));
+        return compileRes.exitCode;
+      }
     }
+  }
+
+  if (watchMode) {
+    return Promise.all(watchQueue);
   }
 
   return exitCode.success;
@@ -83,4 +93,17 @@ function compileSource(pkg) {
   });
 
   return res;
+}
+
+function compileAndWatchSource(pkg) {
+  return execa('tsc', [
+    '-b', 'tsconfig.build.json',
+    '--watch',
+    // '--force',
+    // '--traceResolution',
+  ], {
+    preferLocal: true,
+    detached: true,
+    cwd: resolve('packages', pkg, 'src'),
+  });
 }

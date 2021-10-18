@@ -4,14 +4,12 @@ import context from '@funnyecho/context';
 export interface ISentryTransportConfig {
   exceptionExtraFlatDepth: number;
   messageExtraFlatDepth: number;
-  breadcrumbDataFlatDepth: number;
 }
 
 function newSentryTransportConfig(): ISentryTransportConfig {
   return {
     exceptionExtraFlatDepth: 4,
     messageExtraFlatDepth: 3,
-    breadcrumbDataFlatDepth: 3,
   };
 }
 

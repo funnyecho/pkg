@@ -1,21 +1,46 @@
 import type { ITransport } from '@funnyecho/logger';
 
 import * as Sentry from '@sentry/browser';
-import valuer from './valuer';
+import configValuer from './valuerConfig';
+import onTagValuer, { ISentryOnTag } from './valuerOnTag';
 import logger from '@funnyecho/logger';
 
 function withSentryConfig(): ITransport {
   return (ctx, entry) => {
-    return [valuer.withSentryTransportConfig(ctx), entry];
+    return [configValuer.withSentryTransportConfig(ctx), entry];
   };
+}
+
+function withSentryOnTag(onTag: ISentryOnTag): ITransport {
+  return (ctx, entry) => {
+    return [onTagValuer.withSentryOnTag(ctx, onTag), entry];
+  }
 }
 
 function withSentryPort(): ITransport {
   return (ctx, entry) => {
-    const config = valuer.takeSentryTransportConfig(ctx);
+    const config = configValuer.takeSentryTransportConfig(ctx);
+    const onTag = onTagValuer.takeSentryOnTag(ctx);
     const { owner, level, fields } = entry;
 
-    const message = `[${owner}]${entry.message}`;
+    const message = `${entry.message}`;
+    const fieldMap = logger.mapFieldList(fields);
+
+    const tagged = {};
+    if (typeof onTag === 'function') {
+      Object.keys(fieldMap).forEach((key) => {
+        const shouldTag = onTag(key);
+        if (!shouldTag) return;
+
+        const field = fieldMap[key];
+        if (typeof field === 'function' || typeof field === 'object') return;
+
+        const tagName = shouldTag === true ? key : shouldTag;
+        tagged[tagName] = field;
+
+        delete fieldMap[key];
+      })
+    }
 
     switch (level) {
       case logger.LevelEnum.error:
@@ -23,8 +48,9 @@ function withSentryPort(): ITransport {
         Sentry.captureException(message, {
           tags: {
             'event.owner': owner,
+            ...tagged,
           },
-          extra: flat(logger.mapFieldList(fields), config.exceptionExtraFlatDepth),
+          extra: flat(fieldMap, config.exceptionExtraFlatDepth),
         });
         break;
       case logger.LevelEnum.info:
@@ -32,8 +58,9 @@ function withSentryPort(): ITransport {
           level: Sentry.Severity.Info,
           tags: {
             'event.owner': owner,
+            ...tagged,
           },
-          extra: flat(logger.mapFieldList(fields), config.messageExtraFlatDepth),
+          extra: flat(fieldMap, config.messageExtraFlatDepth),
         });
         break;
       case logger.LevelEnum.debug:
@@ -42,8 +69,8 @@ function withSentryPort(): ITransport {
           type: 'Debug',
           level: Sentry.Severity.Log,
           category: owner,
-          message,
-          data: flat(logger.mapFieldList(fields), config.breadcrumbDataFlatDepth),
+          message: `${message} ${JSON.stringify(fieldMap, null, 2)}`,
+          data: tagged,
         });
         break;
     }
@@ -52,6 +79,7 @@ function withSentryPort(): ITransport {
 
 export default {
   withSentryConfig,
+  withSentryOnTag,
   withSentryPort,
 };
 
