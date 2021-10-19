@@ -1,6 +1,6 @@
 {
   "name": "@funnyecho/logger",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "main": "dist/index",
   "types": "dist/types/index.d.ts",
   "files": [
@@ -24,6 +24,6 @@
   "license": "MIT",
   "sideEffects": false,
   "dependencies": {
-    "@funnyecho/context": "1.0.7"
+    "@funnyecho/context": "1.0.8"
   }
 }

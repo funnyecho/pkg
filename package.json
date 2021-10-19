@@ -1,6 +1,6 @@
 {
   "name": "pkg.funnyecho",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "index.js",
   "repository": "https://github.com/funnyecho/pkg.git",
   "author": "funnyecho <samhwang1990@gmail.com>",
