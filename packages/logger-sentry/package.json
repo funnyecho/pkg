@@ -11,6 +11,7 @@
     "package.json",
     "README.md"
   ],
+  "sideEffects": false,
   "author": "funnyecho <samhwang1990@gmail.com>",
   "license": "MIT",
   "dependencies": {
